@@ -1454,6 +1454,10 @@ fn test_freebsd(target: &str) {
         // If the host is FreeBSD 12, run FreeBSD 12 tests
         cfg.cfg("freebsd12", None);
     }
+    if let Some(13) = freebsd_ver {
+        // If the host is FreeBSD 12, run FreeBSD 12 tests
+        cfg.cfg("freebsd12", None);
+    }
 
     // Required for `getline`:
     cfg.define("_WITH_GETLINE", None);
@@ -1595,8 +1599,7 @@ fn test_freebsd(target: &str) {
             // These constants were removed in FreeBSD 11 (svn r262489),
             // and they've never had any legitimate use outside of the
             // base system anyway.
-            "CTL_MAXID" | "KERN_MAXID" | "HW_MAXID"
-            | "USER_MAXID" => true,
+            "CTL_MAXID" | "KERN_MAXID" | "HW_MAXID" | "USER_MAXID" => true,
 
             _ => false,
         }
@@ -2468,6 +2471,7 @@ fn which_freebsd() -> Option<i32> {
     match &stdout {
         s if s.starts_with("11") => Some(11),
         s if s.starts_with("12") => Some(12),
+        s if s.starts_with("13") => Some(13),
         _ => None,
     }
 }
