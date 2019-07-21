@@ -7,8 +7,6 @@ pub type dev_t = u32;
 // Type of `ino_t` changed from `unsigned int` to `unsigned long` in FreeBSD 12:
 pub type ino_t = u32;
 
-pub const ELAST: ::c_int = 96;
-
 s! {
     pub struct kevent {
         pub ident: ::uintptr_t,
@@ -190,6 +188,8 @@ cfg_if! {
         }
     }
 }
+
+pub const ELAST: ::c_int = 96;
 
 extern "C" {
     // Return type ::c_int was removed in FreeBSD 12

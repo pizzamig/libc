@@ -4,7 +4,6 @@ pub type nlink_t = u64;
 pub type dev_t = u64;
 pub type ino_t = ::c_ulong;
 pub type shmatt_t = ::c_uint;
-pub const ELAST: ::c_int = 96;
 
 s! {
     pub struct shmid_ds {
@@ -190,6 +189,8 @@ cfg_if! {
         }
     }
 }
+
+pub const ELAST: ::c_int = 96;
 
 extern "C" {
     pub fn setgrent();
